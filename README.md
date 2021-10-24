@@ -3,7 +3,7 @@
 [![React](https://img.shields.io/badge/dynamic/json?style=flat&colorB=DF01D7&label=React&prefix=v&query=dependencies.react&logo=react&url=https%3A%2F%2Fraw.githubusercontent.com%2FSoFriendly%2Fyac-mobile%2FReleaseBranch%2Fpackage.json%3Ftoken%3DACCU4SJ6TGYZYKMWFCRNEQS5MYKTG)](https://reactjs.org/)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat&colorB=398339)](http://standardjs.com/)
 
-This is an assignment displaying users cadlogue with user's personal information where one can search for a perticular user and see the details of that user!
+This is an assignment to generate html template according to the user provided data.  
 
 ## Getting Started
 
