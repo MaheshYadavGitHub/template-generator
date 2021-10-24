@@ -19,9 +19,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the project and install the dependencies:
 
-   > \$ git clone https://github.com/vipinyadav610/sapient-assignment.git
+   > \$ git clone https://github.com/MaheshYadavGitHub/template-generator.git
 
-   > \$ cd sapient-assignment
+   > \$ cd template-generator
 
    > \$ yarn
 
