@@ -1,0 +1,12 @@
+.action-btn-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-video-btn {
+  margin: 10px auto;
+}

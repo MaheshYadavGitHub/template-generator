@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style type="text/css">
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    #sidebar,
+    #content {
+        height: 100vh;
+        overflow: auto;
+        float: left;
+        transition: width 0.35s;
+    }
+
+    #sidebar {
+        background: white;
+        width: 30%;
+        box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
+    }
+
+    #sidebar.collapsed {
+        width: 0;
+    }
+
+    #sidebar.collapsed+#content {
+        width: 100%;
+    }
+
+    #content {
+        background: gray;
+        width: 70%;
+        position: relative;
+    }
+
+    .toggle-btn {
+        border: none;
+        outline: none;
+        background: blue;
+        border-radius: 5px;
+        padding: 10px 30px;
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        color: #fff;
+        transform: rotate(90deg);
+    }
+
+    h3 {
+        font-family: sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    .video-tumbnail {
+        width: 100%;
+    }
+
+    .video-tumbnail-container {
+        padding: 30px 30px 15px 30px;
+    }
+
+    .video-tumbnail-title {
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal css */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 800px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+    }
+
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0;
+        }
+
+        to {
+            top: 0;
+            opacity: 1;
+        }
+    }
+
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0;
+        }
+
+        to {
+            top: 0;
+            opacity: 1;
+        }
+    }
+
+    .close {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        padding: 2px 16px;
+    }
+
+    .modal-body {
+        padding: 2px 16px;
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+</style>
+
+<body>
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div id="video-modal-body" class="modal-body"></div>
+        </div>
+    </div>
+    <div id="sidebar" class="collapsed">
+        $videoListContent
+    </div>
+    <div id="content">
+        <button class="toggle-btn" onclick="toggleSideBar()">Videos</button>
+        <iframe src="$pdfLink" height="100%" width="100%" scrolling="auto"></iframe>
+    </div>
+    <script type="text/javascript">
+        // sidebar
+        function toggleSideBar(e) {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+        }
+
+        //  Modal
+        const modal = document.getElementById("videoModal");
+        const span = document.getElementsByClassName("close")[0];
+        const videoModalBody = document.getElementById("video-modal-body");
+
+        document.querySelectorAll(".video-tumbnail").forEach((item) => {
+            item.addEventListener("click", (event) => {
+                modal.style.display = "block";
+                videoModalBody.innerHTML = `
+                <video width="100%" controls>
+                    <source src="${event.target.getAttribute(
+                    "data-video-url"
+                )}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                `;
+                console.log(event.target.getAttribute("data-video-url"));
+            });
+        });
+
+        span.onclick = function () {
+            modal.style.display = "none";
+            videoModalBody.innerHTML = ""
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                videoModalBody.innerHTML = ""
+            }
+        };
+    </script>
+</body>
+
+</html>
